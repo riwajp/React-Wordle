@@ -1,5 +1,5 @@
 .game {
-    width: 800px;
+    width: 900px;
     border: 1px solid black;
     height: 90vh;
     margin: auto;
@@ -12,14 +12,26 @@
 
 }
 
-.word-container:focus{
-    background-color: red;
-}
+
 .letter-container {
     display: inline-block;
     padding: 20px 40px 20px 40px;
     font-size: 50px;
     text-transform: uppercase;
-    border:5px solid black;
-    margin:10px 20px 10px 20px;
+    border:3px solid gray;
+    margin:3px 3px 3px 3px;
+    height:100px;
+    width:100px;
+    text-align: center;
+}
+.letter-filled{
+    border-color: black;
+    
+}
+.correct-place{
+    border-color:green;
+    
+}
+.not-correct-place{
+    border-color: yellow;
 }

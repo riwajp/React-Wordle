@@ -1,34 +1,34 @@
 import Word from "./components/Word";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 
 export default function Home() {
   let answer = "apple";
-  const [word, setWord] = useState("ri");
+  let tries = 5;
+  const [current_word_index, setCurrentWordIndex] = useState(0);
+  const [try_words, setTryWords] = useState([]);
 
-  var wordSetter = (k) => {
-    if (word.length < answer.length) {
-      if (
-        (k.keyCode >= 65 && k.keyCode <= 90) ||
-        (k.keyCode >= 97 && k.keyCode <= 122)
-      ) {
-        var new_word = word + k.key;
-        setWord(new_word);
-      }
-    } else {
-      console.log("filled");
-    }
-  };
-  useEffect(() => {
-    console.log("uf");
-    document.body.addEventListener("keydown", wordSetter);
-    return () => {
-      document.body.removeEventListener("keydown", wordSetter);
-    };
-  }, [word]);
-
+  if (try_words[try_words.length - 1] == answer) {
+    setTimeout(() => window.alert("Won"), 2000);
+  }
+  let words = [];
+  for (let i = 0; i < tries; i++) {
+    words.push(
+      <Word
+        answer={answer}
+        index={i}
+        key={i}
+        active={current_word_index == i}
+        setCurrentWordIndex={setCurrentWordIndex}
+        current_word_index={current_word_index}
+        tries={tries}
+        setTryWords={setTryWords}
+        try_words={try_words}
+      />
+    );
+  }
   return (
     <div className="game" tabIndex={0}>
-      <Word word={word} answer={answer} />
+      {words}
     </div>
   );
 }
