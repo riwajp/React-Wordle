@@ -17,7 +17,7 @@
 .letter-container {
     font-size: 50px;
     text-transform: uppercase;
-    border:3px solid gray;
+    border:4px solid gray;
     margin:3px 3px 3px 3px;
     height:100px;
     width:100px;
@@ -31,9 +31,9 @@
     
 }
 .correct-place{
-    border-color:green;
+    border-color:rgb(23, 166, 23);
     
 }
 .not-correct-place{
-    border-color: yellow;
+    border-color: rgb(189, 189, 21);
 }

@@ -1,5 +1,5 @@
 import Word from "./components/Word";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 export default function Home() {
   let answer = "apple";
@@ -7,16 +7,23 @@ export default function Home() {
   const [current_word_index, setCurrentWordIndex] = useState(0);
   const [try_words, setTryWords] = useState([]);
   const [enabled, setEnabled] = useState(1);
+  const [word_animation_finished, setWordAnimationFinished] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (try_words[try_words.length - 1] == answer) {
       setEnabled(0);
-      setTimeout(() => window.alert("Won"), 1999);
+      setTimeout(() => window.alert("Won"), answer.length * 500);
     } else if (try_words.length == tries) {
       setEnabled(0);
-      window.alert("You lose");
+      setTimeout(() => window.alert("Game Over"), answer.length * 500);
+    } else {
+      setEnabled(1);
     }
   }, [try_words]);
+
+  useLayoutEffect(() => {
+    setEnabled(word_animation_finished);
+  }, [word_animation_finished]);
   let words = [];
 
   for (let i = 0; i < tries; i++) {
@@ -32,6 +39,8 @@ export default function Home() {
         setTryWords={setTryWords}
         try_words={try_words}
         enabled={enabled}
+        setEnabled={setEnabled}
+        setWordAnimationFinished={setWordAnimationFinished}
       />
     );
   }
