@@ -10,6 +10,7 @@ function Word({
   tries,
   setTryWords,
   try_words,
+  enabled,
 }) {
   const [word, setWord] = useState("");
 
@@ -35,13 +36,13 @@ function Word({
     }
   };
   useEffect(() => {
-    if (active) {
+    if (active && enabled) {
       document.body.addEventListener("keydown", wordSetter);
       return () => {
         document.body.removeEventListener("keydown", wordSetter);
       };
     }
-  }, [word, active]);
+  }, [word, active, enabled]);
 
   return (
     <div className="word-container">
