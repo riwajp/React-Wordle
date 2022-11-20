@@ -8,14 +8,13 @@
 
 .word-container{
     margin:auto;
-    width:fit-content
+    width:fit-content;
+    display:flex;
 
 }
 
 
 .letter-container {
-    display: inline-block;
-    padding: 20px 40px 20px 40px;
     font-size: 50px;
     text-transform: uppercase;
     border:3px solid gray;
@@ -23,6 +22,9 @@
     height:100px;
     width:100px;
     text-align: center;
+    padding-top: 10px;
+  
+    
 }
 .letter-filled{
     border-color: black;
