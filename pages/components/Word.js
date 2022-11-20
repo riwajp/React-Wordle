@@ -4,7 +4,7 @@ function Word({ word, answer }) {
   return (
     <div className="word-container">
       {answer.split("").map((letter, i) => (
-        <Letter letter={word.length > i ? word[i] : ""} />
+        <Letter letter={word.length > i ? word[i] : ""} key={i} />
       ))}
     </div>
   );
