@@ -1,5 +1,6 @@
 import Letter from "./Letter";
 import { useLayoutEffect, useEffect, useState } from "react";
+import { validate } from "../../utils";
 
 function Word({
   answer,
@@ -15,6 +16,7 @@ function Word({
   setEnabled,
 }) {
   const [word, setWord] = useState("");
+  const [result, setResult] = useState([]);
   const [letters_animation_finished, setLettersAnimationFinished] = useState(1);
   useLayoutEffect(() => {
     setWordAnimationFinished(letters_animation_finished);
@@ -33,6 +35,7 @@ function Word({
     } else {
       if (k.key == "Enter") {
         setCurrentWordIndex(index + 1);
+        setResult([...validate(answer, word)]);
 
         setTryWords([...try_words, word]);
       }
@@ -54,7 +57,7 @@ function Word({
           letter={word.length > i ? word[i] : ""}
           key={i}
           index={i}
-          answer={answer}
+          result={result[i]}
           done={current_word_index > index}
           setLettersAnimationFinished={setLettersAnimationFinished}
           last_letter={i == tries - 1}

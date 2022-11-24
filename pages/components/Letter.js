@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 function Letter({
   letter,
   index,
-  answer,
+
+  result,
   done,
   setLettersAnimationFinished,
   last_letter,
@@ -15,6 +16,7 @@ function Letter({
   useLayoutEffect(() => {
     if (done) {
       console.log("Done", index);
+
       setTimeout(() => {
         setLettersAnimationFinished(0);
         setAnimate(1);
@@ -29,9 +31,9 @@ function Letter({
   useEffect(() => {
     var temp_class = "letter-container ";
     if (done) {
-      if (letter == answer[index]) {
+      if (result == 2) {
         temp_class += "correct-place ";
-      } else if (answer.includes(letter)) {
+      } else if (result == 1) {
         temp_class += "not-correct-place ";
       }
     }
@@ -49,7 +51,7 @@ function Letter({
       animate={
         animate
           ? {
-              scale: [1, 1.2, 1.2, 1, 1],
+              scale: [1, 1.1, 1.1, 1, 1],
             }
           : {}
       }
