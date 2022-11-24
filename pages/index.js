@@ -8,12 +8,16 @@ export default function Home() {
   const [try_words, setTryWords] = useState([]);
   const [enabled, setEnabled] = useState(1);
   const [word_animation_finished, setWordAnimationFinished] = useState(1);
+  const [game_status, setGameStatus] = useState(1);
 
   useLayoutEffect(() => {
     if (try_words[try_words.length - 1] == answer) {
+      setGameStatus(0);
       setEnabled(0);
       setTimeout(() => window.alert("Won"), answer.length * 500);
     } else if (try_words.length == tries) {
+      setGameStatus(0);
+
       setEnabled(0);
       setTimeout(() => window.alert("Game Over"), answer.length * 500);
     } else {
@@ -22,7 +26,9 @@ export default function Home() {
   }, [try_words]);
 
   useLayoutEffect(() => {
-    setEnabled(word_animation_finished);
+    if (game_status) {
+      setEnabled(word_animation_finished);
+    }
   }, [word_animation_finished]);
   let words = [];
 
