@@ -1,58 +1,64 @@
-import Word from "./components/Word";
-import { useState, useLayoutEffect } from "react";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  let answer = "apple";
-  let tries = 5;
-  const [current_word_index, setCurrentWordIndex] = useState(0);
-  const [try_words, setTryWords] = useState([]);
-  const [enabled, setEnabled] = useState(1);
-  const [word_animation_finished, setWordAnimationFinished] = useState(1);
-  const [game_status, setGameStatus] = useState(1);
+  const [form_data, setFormData] = useState({ tries: 5, word_length: 5 });
 
-  useLayoutEffect(() => {
-    if (try_words[try_words.length - 1] == answer) {
-      setGameStatus(0);
-      setEnabled(0);
-      setTimeout(() => window.alert("Won"), answer.length * 500);
-    } else if (try_words.length == tries) {
-      setGameStatus(0);
-
-      setEnabled(0);
-      setTimeout(() => window.alert("Game Over"), answer.length * 500);
-    } else {
-      setEnabled(1);
+  const handleTriesChange = (v) => {
+    console.log(v);
+    if (v >= 4 && v <= 30) {
+      setFormData({ ...form_data, tries: v });
     }
-  }, [try_words]);
+  };
 
-  useLayoutEffect(() => {
-    if (game_status) {
-      setEnabled(word_animation_finished);
-    }
-  }, [word_animation_finished]);
-  let words = [];
-
-  for (let i = 0; i < tries; i++) {
-    words.push(
-      <Word
-        answer={answer}
-        index={i}
-        key={i}
-        active={current_word_index == i}
-        setCurrentWordIndex={setCurrentWordIndex}
-        current_word_index={current_word_index}
-        tries={tries}
-        setTryWords={setTryWords}
-        try_words={try_words}
-        enabled={enabled}
-        setEnabled={setEnabled}
-        setWordAnimationFinished={setWordAnimationFinished}
-      />
-    );
-  }
+  const handleSubmit = () => {
+    console.log(form_data);
+  };
   return (
-    <div className="game" tabIndex={0}>
-      {words}
+    <div className="home_container">
+      <div className="home_title">Wordle</div>
+      <div className="home_menu">
+        <div className="home_menu_item">
+          <div className="form_label">Word Length</div>
+          <select
+            className="form_select"
+            value={form_data.word_length}
+            onChange={(e) =>
+              setFormData({ ...form_data, word_length: e.target.value })
+            }
+          >
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+          </select>
+        </div>
+
+        <div className="home_menu_item">
+          <div className="form_label">Tries</div>
+          <input
+            type="number"
+            min={4}
+            max={30}
+            className="form_number"
+            value={form_data.tries}
+            onChange={(e) => handleTriesChange(e.target.value)}
+          />
+        </div>
+
+        <div className="home_menu_item">
+          <Link
+            href={{
+              pathname: "/game",
+              query: form_data, // the data
+            }}
+          >
+            <button className="form_submit" onClick={() => handleSubmit()}>
+              Play
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

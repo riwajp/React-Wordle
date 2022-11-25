@@ -1,9 +1,17 @@
+
+@font-face {
+    font-family: "Nekro One";
+    src: url('../NerkoOne-Regular.ttf');
+}
+
+
 .game {
     width: 900px;
     border: 1px solid black;
     height: 90vh;
     margin: auto;
     margin-top: 20px;
+    padding:20px 20px 20px 20px;
 }
 
 .word-container{
@@ -23,17 +31,92 @@
     width:100px;
     text-align: center;
     padding-top: 10px;
+    color:white;
+    border-radius: 10px;
   
     
 }
 .letter-filled{
-    border-color: black;
+    border-color: white;
     
 }
 .correct-place{
-    border-color:rgb(23, 166, 23);
+    background-color:rgb(23, 166, 23);
+    border-color: rgb(23, 166, 23);
     
 }
 .not-correct-place{
     border-color: rgb(189, 189, 21);
+    background-color: rgb(189, 189, 21);;
+}
+
+body{
+    background-color: black;
+    padding:20px 20px 20px 20px;
+}
+.home_container{
+    width:500px;
+    border:1px solid rgb(187, 185, 185);
+    height:fit-content;
+    margin:auto auto auto auto;
+    padding:10px 20px 10px 20px;
+}
+
+.home_title{
+    color:white;
+    font-size: 50px;
+    margin:10px auto auto auto;
+    width:fit-content;
+    font-family: "Nekro One";
+}
+.home_menu_item{
+    margin:20px auto 20px auto;
+    padding:auto 20px auto 20px;
+}
+.form_label{
+    color:white;
+    font-size:14px;
+    margin-right:20px;
+    margin-left:5px;
+
+}
+.form_select{
+    width:100%;
+    height:50px;
+    font-size: 20px;
+    background-color: #F96666;
+    border: 0 solid white;
+    border-radius: 10px;
+    padding-left:15px;
+    padding-right:15px;
+    color:white;
+}
+option{
+    background-color: white;
+    color:black
+}
+.form_number{
+    width:100%;
+    height:50px;
+    font-size: 20px;
+    border: 0 solid white;
+    border-radius: 10px;
+    padding-left:15px;
+    padding-right:15px;
+    background-color: #937DC2;
+    color:white;
+}
+
+.form_submit{
+    width:100%;
+    height:50px;
+    font-size: 20px;
+    background-color: rgb(29, 147, 29);
+    color:white;
+    border: 0 solid white;
+    border-radius: 10px;
+
+}
+.form_number:focus,.form_select:focus{
+    outline:none
 }

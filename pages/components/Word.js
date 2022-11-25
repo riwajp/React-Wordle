@@ -8,12 +8,11 @@ function Word({
   active,
   current_word_index,
   setCurrentWordIndex,
-  tries,
+
   setTryWords,
   try_words,
   enabled,
   setWordAnimationFinished,
-  setEnabled,
 }) {
   const [word, setWord] = useState("");
   const [result, setResult] = useState([]);
@@ -30,7 +29,7 @@ function Word({
       let pattern = /[a-zA-Z]+/;
       if (pattern.test(k.key) && k.key.length == 1) {
         var new_word = word + k.key;
-        setWord(new_word);
+        setWord(new_word.toLowerCase());
       }
     } else {
       if (k.key == "Enter") {
@@ -60,7 +59,7 @@ function Word({
           result={result[i]}
           done={current_word_index > index}
           setLettersAnimationFinished={setLettersAnimationFinished}
-          last_letter={i == tries - 1}
+          last_letter={i == answer.length - 1}
         />
       ))}
     </div>

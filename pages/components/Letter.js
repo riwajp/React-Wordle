@@ -15,8 +15,6 @@ function Letter({
   const [className, setClassName] = useState("letter-container");
   useLayoutEffect(() => {
     if (done) {
-      console.log("Done", index);
-
       setTimeout(() => {
         setLettersAnimationFinished(0);
         setAnimate(1);
