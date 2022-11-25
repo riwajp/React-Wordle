@@ -1,9 +1,12 @@
 import Word from "./components/Word";
-import { useState, useLayoutEffect, useEffect, useMemo } from "react";
+import { useState, useLayoutEffect, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/router";
 import words_data from "./data.json";
+import LettersChart from "./components/LettersChart";
 
 export default function Home(data) {
+  const [used_letters, setUsedLetters] = useState({});
+
   const possible_answers = words_data[0].words.filter(
     (w) => w.length == data.word_length
   );
@@ -21,6 +24,7 @@ export default function Home(data) {
   const [enabled, setEnabled] = useState(1);
   const [word_animation_finished, setWordAnimationFinished] = useState(1);
   const [game_status, setGameStatus] = useState(1);
+  useEffect(() => console.log(used_letters), [current_word_index, game_status]);
 
   useLayoutEffect(() => {
     if (try_words[try_words.length - 1] == answer) {
@@ -46,7 +50,6 @@ export default function Home(data) {
     }
   }, [word_animation_finished]);
   let words = [];
-
   for (let i = 0; i < tries; i++) {
     words.push(
       <Word
@@ -62,12 +65,18 @@ export default function Home(data) {
         enabled={enabled}
         setEnabled={setEnabled}
         setWordAnimationFinished={setWordAnimationFinished}
+        used_letters={used_letters}
+        setUsedLetters={setUsedLetters}
       />
     );
   }
   return (
     <div className="game" tabIndex={0}>
       {words}
+      <LettersChart
+        used_letters={used_letters}
+        word_animation_finished={word_animation_finished}
+      />
     </div>
   );
 }

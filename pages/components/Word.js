@@ -13,10 +13,13 @@ function Word({
   try_words,
   enabled,
   setWordAnimationFinished,
+  used_letters,
+  setUsedLetters,
 }) {
   const [word, setWord] = useState("");
   const [result, setResult] = useState([]);
   const [letters_animation_finished, setLettersAnimationFinished] = useState(1);
+
   useLayoutEffect(() => {
     setWordAnimationFinished(letters_animation_finished);
   }, [letters_animation_finished]);
@@ -34,7 +37,8 @@ function Word({
     } else {
       if (k.key == "Enter") {
         setCurrentWordIndex(index + 1);
-        setResult([...validate(answer, word)]);
+        let result = [...validate(answer, word)];
+        setResult(result);
 
         setTryWords([...try_words, word]);
       }
@@ -60,6 +64,8 @@ function Word({
           done={current_word_index > index}
           setLettersAnimationFinished={setLettersAnimationFinished}
           last_letter={i == answer.length - 1}
+          used_letters={used_letters}
+          setUsedLetters={setUsedLetters}
         />
       ))}
     </div>

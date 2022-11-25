@@ -23,12 +23,12 @@
 
 
 .letter-container {
-    font-size: 50px;
+    font-size: 30px;
     text-transform: uppercase;
     border:4px solid gray;
     margin:3px 3px 3px 3px;
-    height:100px;
-    width:100px;
+    height:70px;
+    width:70px;
     text-align: center;
     padding-top: 10px;
     color:white;
@@ -119,4 +119,45 @@ option{
 }
 .form_number:focus,.form_select:focus{
     outline:none
+}
+
+.letters-chart-container{
+    display:flex;
+    flex-wrap: wrap;
+    width:500px;
+    padding:0px 20px 20px 20px;
+    margin:10px auto auto auto;
+    justify-content: space-around;
+
+    
+}
+
+.letters-chart-letter{
+    width: 40px;
+    height:40px;
+    border:1px solid white;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left:10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    text-transform: uppercase;
+
+}
+
+.letters-chart-0{
+    background-color:grey;
+    border-color: grey;
+}
+
+.letters-chart-1{
+   
+    background-color:rgb(189, 189, 21);
+    border-color: rgb(189, 189, 21);
+}
+.letters-chart-2{
+    background-color:rgb(23, 166, 23);
+    border-color: rgb(23, 166, 23);
 }

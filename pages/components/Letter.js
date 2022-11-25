@@ -9,19 +9,35 @@ function Letter({
   done,
   setLettersAnimationFinished,
   last_letter,
+  used_letters,
+  setUsedLetters,
 }) {
   //animation==============
   const [animate, setAnimate] = useState(0);
   const [className, setClassName] = useState("letter-container");
+
+  const updateUsedLetters = () => {
+    setUsedLetters((used_letters) => {
+      let temp_used_letters = used_letters;
+      let best_score = temp_used_letters[letter]
+        ? Math.max(result, temp_used_letters[letter])
+        : result;
+
+      return { ...temp_used_letters, [letter]: best_score };
+    });
+  };
   useLayoutEffect(() => {
     if (done) {
       setTimeout(() => {
         setLettersAnimationFinished(0);
         setAnimate(1);
+        updateUsedLetters();
         if (last_letter) {
-          setInterval(() => setLettersAnimationFinished(1), 500);
+          setTimeout(() => {
+            setLettersAnimationFinished(1);
+          }, 450);
         }
-      }, index * 500);
+      }, index * 450);
     }
   }, [done]);
 
