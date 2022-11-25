@@ -55,7 +55,7 @@ function Word({
 
   return (
     <div className="word-container">
-      {answer.split("").map((letter, i) => (
+      {answer?.split("")?.map((letter, i) => (
         <Letter
           letter={word.length > i ? word[i] : ""}
           key={i}

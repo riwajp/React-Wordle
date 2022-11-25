@@ -71,7 +71,7 @@ export default function Home(data) {
     );
   }
   return (
-    <div className="game" tabIndex={0}>
+    <div className="game">
       {words}
       <LettersChart
         used_letters={used_letters}

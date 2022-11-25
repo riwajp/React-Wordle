@@ -10,7 +10,9 @@ function LettersChart({ used_letters, word_animation_finished }) {
         <div
           className={
             "letters-chart-letter " +
-            (used_letters[l] != undefined ? class_names[used_letters[l]] : "")
+            (used_letters && used_letters[l] != undefined
+              ? class_names[used_letters[l]]
+              : "")
           }
         >
           {l}
