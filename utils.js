@@ -22,7 +22,9 @@ const validate = (answer, try_word) => {
       j > answer_arr.length &&
       result_arr[i] != 2 &&
       result_arr[i] != 1 &&
-      answer_arr.filter((el, index) => result_arr[index] != 2).includes(l)
+      answer_arr
+        .filter((el, index) => result_arr[index] != 2 && result_arr[index] != 1)
+        .includes(l)
     ) {
       result_arr[i] = 1;
     } else if (
