@@ -10,8 +10,8 @@
     border: 1px solid black;
     height: 90vh;
     margin: auto;
-    margin-top: 20px;
-    padding:20px 20px 20px 20px;
+    margin-top: 0px;
+    padding:5px 20px 20px 20px;
 }
 
 .word-container{
@@ -56,7 +56,6 @@ body{
 }
 .home_container{
     width:500px;
-    border:1px solid rgb(187, 185, 185);
     height:fit-content;
     margin:auto auto auto auto;
     padding:10px 20px 10px 20px;
@@ -160,4 +159,41 @@ option{
 .letters-chart-2{
     background-color:rgb(23, 166, 23);
     border-color: rgb(23, 166, 23);
+}
+.game-buttons-container{
+    display: flex;
+    width: fit-content;
+    justify-content: space-around;
+    margin:auto auto 20px auto;
+    
+
+}
+
+.game-buttons-back{
+    width:160px;
+    height:50px;
+    background-color: rgb(243, 176, 52);
+    color:white;
+    font-size:16px;
+    border: 0 solid red;
+    border-radius: 10px;
+    margin-right:50px;
+    
+    
+    
+}
+.game-buttons-new-game{
+    width:160px;
+    height:50px;
+    background-color: rgb(25, 222, 87);
+    color:white;
+    font-size:16px;
+    border: 0 solid red;
+    border-radius: 10px;
+   
+    
+}
+
+button{
+    cursor: pointer;
 }
