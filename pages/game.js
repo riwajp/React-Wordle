@@ -3,6 +3,7 @@ import { useState, useLayoutEffect, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/router";
 import words_data from "./data.json";
 import LettersChart from "./components/LettersChart";
+import GameButtons from "./components/GameButtons";
 
 export default function Home(data) {
   //array of all words with given length, loaded from the data.json file
@@ -85,6 +86,7 @@ export default function Home(data) {
 
   return (
     <div className="game">
+      <GameButtons />
       {words}
       <LettersChart
         used_letters={used_letters}
