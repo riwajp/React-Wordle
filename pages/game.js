@@ -5,11 +5,13 @@ import words_data from "./data.json";
 import LettersChart from "./components/LettersChart";
 
 export default function Home(data) {
-  const [used_letters, setUsedLetters] = useState({});
-
+  //array of all words with given length, loaded from the data.json file
   const possible_answers = words_data[0].words.filter(
     (w) => w.length == data.word_length
   );
+  //========================================
+
+  //the word for this game, randomly selected from the array possible_answers
   let answer = useMemo(
     () =>
       possible_answers[
@@ -17,15 +19,19 @@ export default function Home(data) {
       ].toLowerCase(),
     []
   );
-  let tries = data.tries;
-  const [current_word_index, setCurrentWordIndex] = useState(0);
+  //========================================
 
-  const [try_words, setTryWords] = useState([]);
-  const [enabled, setEnabled] = useState(1);
-  const [word_animation_finished, setWordAnimationFinished] = useState(1);
-  const [game_status, setGameStatus] = useState(1);
-  useEffect(() => console.log(used_letters), [current_word_index, game_status]);
+  let tries = data.tries; //number of tries, from getInitialProps
 
+  const [current_word_index, setCurrentWordIndex] = useState(0); //the index of current attempt
+  const [used_letters, setUsedLetters] = useState({}); //the list of letters used and their scores i.e. whether it was guessed correctly, correct position, etc.
+  const [try_words, setTryWords] = useState([]); // the list of all the words enterd so far
+  const [enabled, setEnabled] = useState(1); //is listener enabled ? toggled based on if letters animation is completed, or game_status is true
+  const [word_animation_finished, setWordAnimationFinished] = useState(1); //is the animation of all the letters of the last entered word finished?
+  const [game_status, setGameStatus] = useState(1); //is the game still running ? Or it's ended (either won or over)
+  //========================================
+
+  //check if the user has won(guessed the word correctly) or lost (out of tries)
   useLayoutEffect(() => {
     if (try_words[try_words.length - 1] == answer) {
       setGameStatus(0);
@@ -43,12 +49,17 @@ export default function Home(data) {
       setEnabled(1);
     }
   }, [try_words]);
+  //========================================
 
+  //enable or disable event listeners based on letters animation status
   useLayoutEffect(() => {
     if (game_status) {
       setEnabled(word_animation_finished);
     }
   }, [word_animation_finished]);
+  //========================================
+
+  //create array of all words boxes
   let words = [];
   for (let i = 0; i < tries; i++) {
     words.push(
@@ -70,6 +81,8 @@ export default function Home(data) {
       />
     );
   }
+  //========================================
+
   return (
     <div className="game">
       {words}
@@ -81,6 +94,9 @@ export default function Home(data) {
   );
 }
 
+//========================================
+
+//get form data (tries and word length)
 Home.getInitialProps = async ({ query }) => {
   return query;
 };

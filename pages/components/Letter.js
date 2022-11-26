@@ -4,18 +4,17 @@ import { motion } from "framer-motion";
 function Letter({
   letter,
   index,
-
   result,
   done,
   setLettersAnimationFinished,
   last_letter,
-  used_letters,
   setUsedLetters,
 }) {
-  //animation==============
-  const [animate, setAnimate] = useState(0);
+  const [animate, setAnimate] = useState(0); //start animation if 1
   const [className, setClassName] = useState("letter-container");
+  //========================================
 
+  //update used letters dict in parent
   const updateUsedLetters = () => {
     setUsedLetters((used_letters) => {
       let temp_used_letters = used_letters;
@@ -26,6 +25,9 @@ function Letter({
       return { ...temp_used_letters, [letter]: best_score };
     });
   };
+  //========================================
+
+  //start animation if done is true, i.e. user is in next word
   useLayoutEffect(() => {
     if (done) {
       setTimeout(() => {
@@ -40,8 +42,9 @@ function Letter({
       }, index * 450);
     }
   }, [done]);
+  //========================================
 
-  //set class for letter container div==============
+  //set class for letter container div
   useEffect(() => {
     var temp_class = "letter-container ";
     if (done) {
@@ -58,8 +61,8 @@ function Letter({
 
     setClassName(temp_class);
   }, [animate, letter]);
+  //========================================
 
-  //return==============
   return (
     <motion.div
       animate={

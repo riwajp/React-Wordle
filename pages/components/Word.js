@@ -8,7 +8,6 @@ function Word({
   active,
   current_word_index,
   setCurrentWordIndex,
-
   setTryWords,
   try_words,
   enabled,
@@ -16,21 +15,28 @@ function Word({
   used_letters,
   setUsedLetters,
 }) {
-  const [word, setWord] = useState("");
-  const [result, setResult] = useState([]);
-  const [letters_animation_finished, setLettersAnimationFinished] = useState(1);
+  const [word, setWord] = useState(""); //current word being typed by user
+  const [result, setResult] = useState([]); //array of score for corresponding letters of the word (Array of elements 0,1,2)
+  const [letters_animation_finished, setLettersAnimationFinished] = useState(1); // animation status of letters, finished or not?
 
+  //========================================
+
+  //set animation status of words in parent
   useLayoutEffect(() => {
     setWordAnimationFinished(letters_animation_finished);
   }, [letters_animation_finished]);
+  //========================================
 
-  var wordSetter = (k) => {
+  //handle key press of event listener
+  var handleKeyDown = (k) => {
     if (k.key == "Backspace") {
       setWord(word.slice(0, -1));
     }
     if (word.length < answer.length) {
+      //if not end of word
       let pattern = /[a-zA-Z]+/;
       if (pattern.test(k.key) && k.key.length == 1) {
+        //if input is letter, update the word
         var new_word = word + k.key;
         setWord(new_word.toLowerCase());
       }
@@ -44,14 +50,18 @@ function Word({
       }
     }
   };
+  //========================================
+
+  //event listeners
   useEffect(() => {
     if (active && enabled) {
-      document.body.addEventListener("keydown", wordSetter);
+      document.body.addEventListener("keydown", handleKeyDown);
       return () => {
-        document.body.removeEventListener("keydown", wordSetter);
+        document.body.removeEventListener("keydown", handleKeyDown);
       };
     }
   }, [word, active, enabled]);
+  //========================================
 
   return (
     <div className="word-container">

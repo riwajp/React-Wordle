@@ -3,17 +3,22 @@ import Link from "next/link";
 
 export default function Home() {
   const [form_data, setFormData] = useState({ tries: 5, word_length: 5 });
+  //========================================
 
   const handleTriesChange = (v) => {
     console.log(v);
+    //only allow values between 4 and 30, inclusively
     if (v >= 4 && v <= 30) {
       setFormData({ ...form_data, tries: v });
     }
   };
+  //========================================
 
   const handleSubmit = () => {
     console.log(form_data);
   };
+  //========================================
+
   return (
     <div className="home_container">
       <div className="home_title">Wordle</div>
