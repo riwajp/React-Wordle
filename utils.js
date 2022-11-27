@@ -16,18 +16,30 @@ const validate = (answer, try_word) => {
   for (let j = 0; j < answer_arr_org.length * 3; j++) {
     let i = j % answer_arr.length;
     let l = try_word_arr[i];
+
+    //================================
     if (j < answer_arr.length && indicesOf(answer_arr_org, l).includes(i)) {
       result_arr[i] = 2;
-    } else if (
+    }
+    //================================
+    else if (
       j > answer_arr.length &&
+      j < answer_arr.length * 2 &&
       result_arr[i] != 2 &&
       result_arr[i] != 1 &&
       answer_arr
-        .filter((el, index) => result_arr[index] != 2 && result_arr[index] != 1)
+        .filter(
+          (el, index) =>
+            indicesOf(try_word_arr, el).filter(
+              (elm, indx) => result_arr[elm] !== 1 && result_arr[elm] !== 2
+            ).length
+        )
         .includes(l)
     ) {
       result_arr[i] = 1;
-    } else if (
+    }
+    //================================
+    else if (
       j >= answer_arr.length * 2 &&
       result_arr[i] != 2 &&
       result_arr[i] != 1
@@ -38,4 +50,6 @@ const validate = (answer, try_word) => {
 
   return result_arr;
 };
+console.log(validate("house", "aeiou"));
+
 export { validate };
