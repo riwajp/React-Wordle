@@ -10,46 +10,28 @@ const indicesOf = (arr, el) => {
 const validate = (answer, try_word) => {
   let try_word_arr = try_word.split("");
   let answer_arr = answer.split("");
-  let result_arr = [...try_word_arr];
-  let answer_arr_org = [...answer_arr];
+  let answer_arr_temp = [...answer_arr];
+  let result_arr = Array(try_word_arr.length);
+  result_arr.fill(0);
 
-  for (let j = 0; j < answer_arr_org.length * 3; j++) {
-    let i = j % answer_arr.length;
-    let l = try_word_arr[i];
+  for (let index in try_word_arr) {
+    let letter = try_word_arr[index];
+    if (indicesOf(answer_arr_temp, letter).includes(parseInt(index))) {
+      result_arr[index] = 2;
+      answer_arr_temp[index] = "";
+    }
+  }
 
-    //================================
-    if (j < answer_arr.length && indicesOf(answer_arr_org, l).includes(i)) {
-      result_arr[i] = 2;
-    }
-    //================================
-    else if (
-      j > answer_arr.length &&
-      j < answer_arr.length * 2 &&
-      result_arr[i] != 2 &&
-      result_arr[i] != 1 &&
-      answer_arr
-        .filter(
-          (el, index) =>
-            indicesOf(try_word_arr, el).filter(
-              (elm, indx) => result_arr[elm] !== 1 && result_arr[elm] !== 2
-            ).length
-        )
-        .includes(l)
-    ) {
-      result_arr[i] = 1;
-    }
-    //================================
-    else if (
-      j >= answer_arr.length * 2 &&
-      result_arr[i] != 2 &&
-      result_arr[i] != 1
-    ) {
-      result_arr[i] = 0;
+  for (let index in try_word_arr) {
+    let letter = try_word_arr[index];
+
+    if (answer_arr_temp.includes(letter)) {
+      result_arr[index] = 1;
+      answer_arr_temp[answer_arr_temp.indexOf(letter)] = "";
     }
   }
 
   return result_arr;
 };
-console.log(validate("house", "aeiou"));
 
 export { validate };
