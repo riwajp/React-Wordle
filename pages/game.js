@@ -86,6 +86,22 @@ export default function Home(data) {
 
   return (
     <div className="game">
+      <div
+        style={{
+          color: "white",
+          fontSize: 20,
+          textDecoration: "underline",
+          marginBottom: 20,
+          textAlign: "center",
+        }}
+      >
+        <a
+          href="https://mashable.com/article/wordle-word-game-what-is-it-explained"
+          target={"_blank"}
+        >
+          How to play?
+        </a>
+      </div>
       <GameButtons />
       {words}
       <LettersChart

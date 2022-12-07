@@ -62,6 +62,23 @@ export default function Home() {
               Play
             </button>
           </Link>
+
+          <div
+            style={{
+              color: "white",
+              fontSize: 20,
+              textDecoration: "underline bold",
+              marginTop: 20,
+              textAlign: "center",
+            }}
+          >
+            <a
+              href="https://mashable.com/article/wordle-word-game-what-is-it-explained"
+              target={"_blank"}
+            >
+              How to play?
+            </a>
+          </div>
         </div>
       </div>
     </div>

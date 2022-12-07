@@ -6,7 +6,7 @@ function GameButtons() {
     <div className="game-buttons-container">
       <button
         className="game-buttons-back"
-        onClick={() => location.replace("http://localhost:3000/")}
+        onClick={() => location.replace("https://riwaj-wordle.netlify.app/")}
       >
         Back
       </button>
