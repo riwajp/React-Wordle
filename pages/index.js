@@ -67,7 +67,7 @@ export default function Home() {
             style={{
               color: "white",
               fontSize: 20,
-              textDecoration: "underline bold",
+              textDecoration: "underline",
               marginTop: 20,
               textAlign: "center",
             }}
